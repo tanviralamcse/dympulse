@@ -37,4 +37,5 @@ const testDbConnection = async () => {
 module.exports = {
   saveFormSubmission,
   getAllSubmissions,
+  testDbConnection,
 };
