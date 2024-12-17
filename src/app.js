@@ -23,8 +23,9 @@ app.use(cors({
 }));
 
 app.use(bodyParser.json()); // Parse JSON request bodies
+
 app.get("/", (req, res) => {
-    res.send("API is running! Use `/api` for endpoints.");
+    res.send("API is running! please Use `/api` for endpoints.");
 });
 
 
