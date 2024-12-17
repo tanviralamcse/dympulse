@@ -1,4 +1,3 @@
-// app.js
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -10,7 +9,19 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // Middleware setup
-app.use(cors({ origin: "http://localhost:3000", methods: ["GET", "POST", "OPTIONS"] }));
+const allowedOrigins = [process.env.REACT_APP_API_URL || "http://localhost:3000"];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "OPTIONS"]
+}));
+
 app.use(bodyParser.json()); // Parse JSON request bodies
 
 // Use Routes

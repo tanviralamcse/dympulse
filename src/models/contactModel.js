@@ -1,4 +1,4 @@
-const pool = require("../config/db").default;
+const pool = require("../config/db");
 require("dotenv").config(); // Load environment variables
 
 // Get the table name from environment variable
