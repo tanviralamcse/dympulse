@@ -6,10 +6,10 @@ require("dotenv").config(); // Load environment variables
 const contactRoutes = require("./routes/contactRoutes"); // Import routes
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT;
 
 // Middleware setup
-const allowedOrigins = [process.env.REACT_APP_API_URL || "http://localhost:3000"];
+const allowedOrigins = [process.env.REACT_APP_API_URL];
 
 app.use(cors({
   origin: (origin, callback) => {
