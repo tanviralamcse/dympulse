@@ -23,6 +23,10 @@ app.use(cors({
 }));
 
 app.use(bodyParser.json()); // Parse JSON request bodies
+app.get("/", (req, res) => {
+    res.send("API is running! Use `/api` for endpoints.");
+});
+
 
 // Use Routes
 app.use("/api", contactRoutes); // Prefix all routes with /api
