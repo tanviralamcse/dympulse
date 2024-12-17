@@ -13,11 +13,16 @@ const saveFormSubmission = async (name, email, subject, message) => {
   return result.rows[0];
 };
 
-// Function to fetch all form submissions
 const getAllSubmissions = async () => {
-  const result = await pool.query(`SELECT * FROM ${TABLE_NAME}`);
-  return result.rows;
+  try {
+    const result = await pool.query(`SELECT * FROM ${TABLE_NAME}`);
+    return result.rows;
+  } catch (error) {
+    console.error("Error fetching contact form data: ", error.message);  // Log the error message
+    throw new Error("Failed to retrieve data");
+  }
 };
+
 
 module.exports = {
   saveFormSubmission,
