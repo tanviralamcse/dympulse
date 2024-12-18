@@ -11,6 +11,7 @@ const app = express();
 const allowedOrigins = [
   process.env.REACT_APP_API_URL,
   "http://localhost:4000", // For local development
+  "https://apibackenddympulse.vercel.app",
 ];
 
 app.use(
