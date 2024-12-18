@@ -56,8 +56,8 @@ app.get("/", (req, res) => {
 //     }
 //   });
 
-// Use Routes
-//app.use("/api", contactRoutes); // Prefix all routes with /api
+//Use Routes
+app.use("/api", contactRoutes); // Prefix all routes with /api
 
 // Export app to use in server.js
 module.exports = app;
