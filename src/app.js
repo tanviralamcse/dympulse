@@ -35,25 +35,69 @@ app.get("/debug-env", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("API is running! Please use `/api` for endpoints.");
-});
-
-// // Route to test database connection
-// app.get("/test", async (req, res) => {
-//     try {
-//       const result = await pool.query('SELECT NOW()'); // Simple query to test connection
-//       res.status(200).json({
-//         message: "Database connection is successful",
-//         time: result.rows[0].now // Show current time from database to verify connection
-//       });
-//     } catch (error) {
-//       console.error("Database connection error:", error);
-//       res.status(500).json({
-//         message: "Failed to connect to the database",
-//         error: error.message
-//       });
-//     }
-//   });
+    res.send(`
+      <html>
+        <head>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              background-color: #f4f7fc;
+              color: #333;
+              margin: 0;
+              padding: 20px;
+            }
+            h1 {
+              color: #5c6bc0;
+            }
+            .container {
+              max-width: 800px;
+              margin: 0 auto;
+              padding: 20px;
+              background-color: #fff;
+              box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+              border-radius: 8px;
+            }
+            .info {
+              margin-bottom: 20px;
+              font-size: 18px;
+            }
+            .links {
+              margin-top: 20px;
+              list-style-type: none;
+              padding: 0;
+            }
+            .links li {
+              padding: 8px;
+              font-size: 16px;
+            }
+            .links a {
+              text-decoration: none;
+              color: #5c6bc0;
+            }
+            .links a:hover {
+              text-decoration: underline;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <h1>Welcome to the Dympulse API!</h1>
+            <div class="info">
+              <p>This is the API that powers the Dympulse platform.</p>
+              <p><strong>API is running!</strong> Please explore the endpoints below to interact with the system.</p>
+            </div>
+            
+            <ul class="links">
+              <li><strong>Get Started:</strong> Use the <code>/api</code> endpoint for all your requests.</li>
+              <li><strong>Documentation:</strong> Check out the API documentation <a href="https://example.com/docs" target="_blank">here</a>.</li>
+              <li><strong>Status:</strong> <a href="/status">View the current status of the API</a></li>
+            </ul>
+          </div>
+        </body>
+      </html>
+    `);
+  });
+  
 
 //Use Routes
 app.use("/api", contactRoutes); // Prefix all routes with /api
