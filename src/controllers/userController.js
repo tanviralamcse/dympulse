@@ -55,6 +55,17 @@ const register = async (req, res) => {
   }
 };
 
+const getAllUsers = async () => {
+    try {
+      const result = await pool.query("SELECT * FROM users"); // Query to fetch all users
+      return result.rows; // Return rows from the result
+    } catch (error) {
+      console.error("Error fetching users from DB:", error.message);
+      throw new Error("Database query failed");
+    }
+  };
+
 module.exports = {
   register,
+  getAllUsers,
 };

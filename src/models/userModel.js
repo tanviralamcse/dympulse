@@ -30,7 +30,27 @@ const registerUser = async (username, email, password) => {
       throw new Error(error.message || "User registration failed");
     }
   };
+
+  const getAllUsers = async (req, res) => {
+    try {
+      const result = await pool.query(`SELECT * FROM ${USER_TABLE}`);
+      const users = result.rows;
+  
+      if (!users.length) {
+        return res.status(404).json({ message: "No users found." });
+      }
+  
+      return res.status(200).json({
+        message: "Users retrieved successfully.",
+        data: users,
+      });
+    } catch (error) {
+      console.error("Error fetching users:", error.message);
+      return res.status(500).json({ message: "Error retrieving users." });
+    }
+  };
   
 module.exports = {
   registerUser,
+  getAllUsers,
 };

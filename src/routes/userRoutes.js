@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const { getAllUsers } = require("../controllers/userController"); // Import the function
+
 
 // CORS configuration for user routes
 const cors = require("cors");
@@ -37,5 +39,16 @@ router.post("/register", (req, res) => {
   // This is just a simple simulation
   return res.status(201).json({ message: "User registered successfully!" });
 });
+
+// Get all users
+router.get("/all", async (req, res) => {
+    try {
+      const users = await getAllUsers(); // Call the function from the controller
+      return res.status(200).json({ message: "Users retrieved", data: users });
+    } catch (error) {
+      console.error("Error fetching users:", error.message);
+      return res.status(500).json({ message: "Error retrieving users" });
+    }
+  });
 
 module.exports = router;
