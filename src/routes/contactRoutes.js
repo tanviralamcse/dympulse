@@ -8,6 +8,6 @@ const router = express.Router();
 router.post("/contact", handleFormSubmission);
 
 // GET /api/contact - Fetch all submissions
-router.get("/getalldata", fetchAllSubmissions);
+router.get("/contact", fetchAllSubmissions);
 
 module.exports = router;
