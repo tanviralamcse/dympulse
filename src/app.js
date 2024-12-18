@@ -98,6 +98,12 @@ app.get("/", (req, res) => {
     `);
   });
   
+  app.get("/status", (req, res) => {
+    res.json({
+      status: "OK",
+      message: "API is running smoothly."
+    });
+  });
 
 //Use Routes
 app.use("/api", contactRoutes); // Prefix all routes with /api
