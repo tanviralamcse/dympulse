@@ -1,4 +1,3 @@
-// models/contactModel.js
 const pool = require("../config/db");
 require("dotenv").config(); // Load environment variables
 
@@ -7,9 +6,23 @@ const TABLE_NAME = process.env.TABLE_NAME || "dympulsedb";
 // Function to insert form data into the database
 const saveFormSubmission = async (name, email, subject, message) => {
   try {
+    // Validate input
+    if (!name || !email || !message) {
+      throw new Error("Name, email, and message are required fields");
+    }
+
+    // Ensure inputs are trimmed to remove leading/trailing whitespace
+    const sanitizedInputs = {
+      name: name.trim(),
+      email: email.trim(),
+      subject: subject ? subject.trim() : null,
+      message: message.trim(),
+    };
+
+    // Insert into database using parameterized query
     const result = await pool.query(
       `INSERT INTO ${TABLE_NAME} (name, email, subject, message) VALUES ($1, $2, $3, $4) RETURNING *`,
-      [name, email, subject || null, message]
+      [sanitizedInputs.name, sanitizedInputs.email, sanitizedInputs.subject, sanitizedInputs.message]
     );
     return result.rows[0];
   } catch (error) {
@@ -21,6 +34,7 @@ const saveFormSubmission = async (name, email, subject, message) => {
 // Function to fetch all form submissions
 const getAllSubmissions = async () => {
   try {
+    // Use a parameterized query even if there are no user inputs
     const result = await pool.query(`SELECT * FROM ${TABLE_NAME}`);
     console.log("Fetched data:", result.rows); // Log fetched data
     return result.rows;
@@ -29,7 +43,6 @@ const getAllSubmissions = async () => {
     throw new Error("Failed to retrieve data");
   }
 };
-
 
 // Function to test database connection
 const testDbConnection = async () => {
