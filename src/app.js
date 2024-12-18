@@ -53,7 +53,7 @@ app.get("/debug-env", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send(<h1>API is working great!!</h1>);
+  res.send("<h1>API is running good</h1>");
 });
 
 // Export app to use in server.js
