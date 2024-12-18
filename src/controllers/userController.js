@@ -12,7 +12,7 @@ const isValidPassword = (password) => {
 // Function to check if the email already exists
 const emailExists = async (email) => {
   const result = await pool.query(
-    `SELECT * FROM ${USER_TABLE} WHERE email = $1`, 
+    `SELECT COUNT(*) FROM ${USER_TABLE} WHERE email = $1`, 
     [email]);
   return result.rows.length > 0;
 };

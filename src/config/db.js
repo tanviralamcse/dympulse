@@ -1,4 +1,3 @@
-// config/db.js
 require("dotenv").config();
 const { Pool } = require("pg");
 
@@ -12,6 +11,10 @@ const pool = new Pool({
   },
 });
 
+// Log the USER_TABLE value to ensure it's correct
+const USER_TABLE = process.env.USER_TABLE || "users"; // Fallback to "users" if not set in environment
+console.log("Using table:", USER_TABLE);  // Log the table name to verify
+
 // Test database connection
 pool.connect()
   .then(() => {
@@ -22,3 +25,4 @@ pool.connect()
   });
 
 module.exports = pool;
+
