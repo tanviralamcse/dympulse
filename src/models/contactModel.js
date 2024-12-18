@@ -30,6 +30,7 @@ const getAllSubmissions = async () => {
   }
 };
 
+
 // Function to test database connection
 const testDbConnection = async () => {
   try {

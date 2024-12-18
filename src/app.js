@@ -29,6 +29,11 @@ app.use(
 
 app.use(bodyParser.json()); // Parse JSON request bodies
 
+app.get("/debug-env", (req, res) => {
+    res.json({ databaseUrl: process.env.DATABASE_URL || "Not Set" });
+});
+
+
 app.get("/", (req, res) => {
   res.send("API is running! Please use `/api` for endpoints.");
 });
