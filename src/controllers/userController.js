@@ -1,6 +1,8 @@
 const { registerUser } = require("../models/userModel");
 const pool = require("../config/db"); // For checking if the email already exists
+require("dotenv").config(); 
 
+const USER_TABLE = process.env.USER_TABLE;
 // Helper function to check password strength
 const isValidPassword = (password) => {
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -9,7 +11,9 @@ const isValidPassword = (password) => {
 
 // Function to check if the email already exists
 const emailExists = async (email) => {
-  const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+  const result = await pool.query(
+    `SELECT * FROM ${USER_TABLE} WHERE email = $1`, 
+    [email]);
   return result.rows.length > 0;
 };
 
