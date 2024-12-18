@@ -1,5 +1,6 @@
+// server.js
 const app = require("./app"); // Import the Express app
-const { testDbConnection } = require("./models/contactModel"); // Correctly import testDbConnection
+const { testDbConnection } = require("./models/contactModel"); // Import the function
 
 // Call the function to test DB connection
 testDbConnection();

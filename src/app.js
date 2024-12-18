@@ -1,3 +1,4 @@
+// app.js
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -10,8 +11,7 @@ const app = express();
 // Middleware setup
 const allowedOrigins = [
   process.env.REACT_APP_API_URL,
-  "http://localhost:4000", // For local development
-  "https://apibackenddympulse.vercel.app",
+  "http://localhost:3000", // For local development
 ];
 
 app.use(

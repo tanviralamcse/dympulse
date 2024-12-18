@@ -1,7 +1,9 @@
+// controllers/contactController.js
 const { saveFormSubmission, getAllSubmissions } = require("../models/contactModel");
 
 // Handle form submission
 const handleFormSubmission = async (req, res) => {
+  console.log("Received request:", req.body); // Log incoming data
   const { name, email, subject, message } = req.body;
 
   // Validate required fields

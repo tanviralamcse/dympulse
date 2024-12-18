@@ -1,16 +1,18 @@
-// Set up database connection
+// config/db.js
 require("dotenv").config();
 const { Pool } = require("pg");
 
-// Use DATABASE_URL for connection
+// Log to ensure DATABASE_URL is set (for debugging purposes)
+console.log("DATABASE_URL is set:", !!process.env.DATABASE_URL);
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL, // Use DATABASE_URL here
   ssl: {
     rejectUnauthorized: false, // Required for NeonDB SSL connections
   },
 });
 
-// Check database connection
+// Test database connection
 pool.connect()
   .then(() => {
     console.log("Database connected successfully using DATABASE_URL.");
