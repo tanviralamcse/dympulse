@@ -108,5 +108,8 @@ app.get("/", (req, res) => {
 //Use Routes
 app.use("/api", contactRoutes); // Prefix all routes with /api
 
+// user registration route
+app.use("/api/users", userRoutes);
+
 // Export app to use in server.js
 module.exports = app;
