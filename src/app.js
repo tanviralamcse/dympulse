@@ -52,5 +52,9 @@ app.get("/debug-env", (req, res) => {
   res.json({ databaseUrl: process.env.DATABASE_URL || "Not Set" });
 });
 
+app.get("/", (req, res) => {
+  res.send(<h1>API is working great!!</h1>);
+});
+
 // Export app to use in server.js
 module.exports = app;
