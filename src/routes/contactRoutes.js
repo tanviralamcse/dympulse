@@ -1,11 +1,12 @@
-// contactRoutes.js
 const express = require("express");
 const { handleFormSubmission, fetchAllSubmissions } = require("../controllers/contactController");
 
 const router = express.Router();
 
-// Routes
-router.post("/contact", handleFormSubmission);  // POST /api/contact
-router.get("/contact", fetchAllSubmissions);    // GET /api/contact
+// POST /api/contact - Submit form
+router.post("/contact", handleFormSubmission);
+
+// GET /api/contact - Fetch all submissions
+router.get("/contact", fetchAllSubmissions);
 
 module.exports = router;

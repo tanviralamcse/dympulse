@@ -1,4 +1,3 @@
-// contactController.js
 const { saveFormSubmission, getAllSubmissions } = require("../models/contactModel");
 
 // Handle form submission
