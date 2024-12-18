@@ -26,7 +26,18 @@ const getAllSubmissions = async () => {
   }
 };
 
+// Function to test database connection
+const testDbConnection = async () => {
+  try {
+    const result = await pool.query("SELECT NOW()");
+    console.log("Database connection successful:", result.rows);
+  } catch (error) {
+    console.error("Error connecting to database:", error.message);
+  }
+};
+
 module.exports = {
   saveFormSubmission,
   getAllSubmissions,
+  testDbConnection,
 };

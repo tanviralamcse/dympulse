@@ -10,7 +10,7 @@ const app = express();
 // Middleware setup
 const allowedOrigins = [
   process.env.REACT_APP_API_URL,
-  "http://localhost:3000", // For local development
+  "http://localhost:4000", // For local development
 ];
 
 app.use(
