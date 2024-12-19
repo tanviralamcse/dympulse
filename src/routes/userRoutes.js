@@ -2,13 +2,12 @@ const express = require("express");
 const router = express.Router();
 const { getAllUsers } = require("../controllers/userController"); // Import the function
 
-
 // CORS configuration for user routes
 const cors = require("cors");
 
 // Allow specific origin and method only for the /login route
 const userRoutesCorsOptions = {
-  origin: ["https://specific-origin.com"],  // Replace with your allowed frontend URL
+  origin: ["https://specific-origin.com"], // Replace with your allowed frontend URL
   methods: ["POST"], // Only allow POST requests for login
 };
 
@@ -32,7 +31,9 @@ router.post("/register", (req, res) => {
 
   // Registration logic: Validate inputs and save the user to the database
   if (!username || !email || !password) {
-    return res.status(400).json({ error: "Please provide all required fields" });
+    return res
+      .status(400)
+      .json({ error: "Please provide all required fields" });
   }
 
   // Ideally, you should hash the password and save user to your database
@@ -42,13 +43,13 @@ router.post("/register", (req, res) => {
 
 // Get all users
 router.get("/all", async (req, res) => {
-    try {
-      const users = await getAllUsers(); // Call the function from the controller
-      return res.status(200).json({ message: "Users retrieved", data: users });
-    } catch (error) {
-      console.error("Error fetching users:", error.message);
-      return res.status(500).json({ message: "Error retrieving users" });
-    }
-  });
+  try {
+    const users = await getAllUsers(); // Call the function from the controller
+    return res.status(200).json({ message: "Users retrieved", data: users });
+  } catch (error) {
+    console.error("Error fetching users:", error.message);
+    return res.status(500).json({ message: "Error retrieving users" });
+  }
+});
 
 module.exports = router;

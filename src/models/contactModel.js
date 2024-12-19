@@ -37,7 +37,7 @@ const saveFormSubmission = async (name, email, subject, message) => {
         sanitizedInputs.email,
         sanitizedInputs.subject,
         sanitizedInputs.message,
-      ]
+      ],
     );
     return result.rows[0];
   } catch (error) {

@@ -1,19 +1,21 @@
 const { registerUser } = require("../models/userModel");
 const pool = require("../config/db"); // For checking if the email already exists
-require("dotenv").config(); 
+require("dotenv").config();
 
 const USER_TABLE = process.env.USER_TABLE;
 // Helper function to check password strength
 const isValidPassword = (password) => {
-  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const passwordRegex =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   return passwordRegex.test(password);
 };
 
 // Function to check if the email already exists
 const emailExists = async (email) => {
   const result = await pool.query(
-    `SELECT COUNT(*) FROM ${USER_TABLE} WHERE email = $1`, 
-    [email]);
+    `SELECT COUNT(*) FROM ${USER_TABLE} WHERE email = $1`,
+    [email],
+  );
   return result.rows.length > 0;
 };
 
@@ -28,7 +30,8 @@ const register = async (req, res) => {
   // Validate password strength
   if (!isValidPassword(password)) {
     return res.status(400).json({
-      message: "Password must be at least 8 characters long, include a number, and a special character.",
+      message:
+        "Password must be at least 8 characters long, include a number, and a special character.",
     });
   }
 
@@ -56,14 +59,14 @@ const register = async (req, res) => {
 };
 
 const getAllUsers = async () => {
-    try {
-      const result = await pool.query("SELECT * FROM users"); // Query to fetch all users
-      return result.rows; // Return rows from the result
-    } catch (error) {
-      console.error("Error fetching users from DB:", error.message);
-      throw new Error("Database query failed");
-    }
-  };
+  try {
+    const result = await pool.query("SELECT * FROM users"); // Query to fetch all users
+    return result.rows; // Return rows from the result
+  } catch (error) {
+    console.error("Error fetching users from DB:", error.message);
+    throw new Error("Database query failed");
+  }
+};
 
 module.exports = {
   register,

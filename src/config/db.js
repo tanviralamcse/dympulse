@@ -13,10 +13,11 @@ const pool = new Pool({
 
 // Log the USER_TABLE value to ensure it's correct
 const USER_TABLE = process.env.USER_TABLE || "users"; // Fallback to "users" if not set in environment
-console.log("Using table:", USER_TABLE);  // Log the table name to verify
+console.log("Using table:", USER_TABLE); // Log the table name to verify
 
 // Test database connection
-pool.connect()
+pool
+  .connect()
   .then(() => {
     console.log("Database connected successfully using DATABASE_URL.");
   })
@@ -25,4 +26,3 @@ pool.connect()
   });
 
 module.exports = pool;
-

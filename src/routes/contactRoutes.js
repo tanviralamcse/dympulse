@@ -1,6 +1,9 @@
 // routes/contactRoutes.js
 const express = require("express");
-const { handleFormSubmission, fetchAllSubmissions } = require("../controllers/contactController");
+const {
+  handleFormSubmission,
+  fetchAllSubmissions,
+} = require("../controllers/contactController");
 
 const router = express.Router();
 

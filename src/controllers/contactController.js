@@ -1,4 +1,7 @@
-const { saveFormSubmission, getAllSubmissions } = require("../models/contactModel");
+const {
+  saveFormSubmission,
+  getAllSubmissions,
+} = require("../models/contactModel");
 const validator = require("validator"); // Used for input sanitization
 
 // Handle form submission
@@ -30,7 +33,7 @@ const handleFormSubmission = async (req, res) => {
       sanitizedInputs.name,
       sanitizedInputs.email,
       sanitizedInputs.subject,
-      sanitizedInputs.message
+      sanitizedInputs.message,
     );
     res.status(201).json({
       message: "Form submission successful!",

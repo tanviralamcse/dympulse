@@ -28,7 +28,7 @@ app.use(
     methods: ["GET", "POST", "OPTIONS"], // Allow methods
     allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
     credentials: true, // Allow cookies with requests if needed
-  })
+  }),
 );
 
 // Parse JSON request bodies
@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 });
 
 // Handle preflight requests (OPTIONS)
-app.options("*", cors());  // Respond to preflight requests
+app.options("*", cors()); // Respond to preflight requests
 
 // Define routes
 app.use("/api", contactRoutes);
