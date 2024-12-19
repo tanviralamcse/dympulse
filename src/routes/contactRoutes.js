@@ -8,6 +8,6 @@ const router = express.Router();
 router.post("/contact", handleFormSubmission);
 
 // GET /api/contact - Fetch all submissions
-router.get("/contact", fetchAllSubmissions);
+router.get("/secureretrive", fetchAllSubmissions);
 
 module.exports = router;
